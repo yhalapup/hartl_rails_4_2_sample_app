@@ -70,4 +70,13 @@ RSpec.describe User, type: :model do
 
     it { is_expected.not_to be_valid }
   end
+
+  # TODO fix failing this test
+  describe "when password is not present" do
+    before do
+      @user = User.new(name: "Example User", email: "user@example.com",
+        password: " ", password_confirmation: " ")
+    end
+    it { is_expected.not_to be_valid }
+  end
 end
