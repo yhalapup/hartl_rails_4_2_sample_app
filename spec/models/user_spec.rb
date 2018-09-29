@@ -54,4 +54,14 @@ RSpec.describe User, type: :model do
 
     it { is_expected.not_to be_valid }
   end
+
+  describe "when email address is already taken and should be case-insensitive" do
+    before do
+      user_with_same_email = @user.dup
+      user_with_same_email.email = @user.email.upcase
+      user_with_same_email.save
+    end
+
+    it { is_expected.not_to be_valid }
+  end
 end
