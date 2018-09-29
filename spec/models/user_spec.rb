@@ -98,4 +98,9 @@ RSpec.describe User, type: :model do
       specify { expect(user_for_invalid_password).to be_falsey }
     end
   end
+
+  describe "with a password that's too short" do
+    before { @user.password = @user.password_confirmation = "a" * 5 }
+    it { is_expected.not_to be_valid }
+  end
 end
