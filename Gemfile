@@ -18,6 +18,7 @@ gem 'turbolinks',              '2.3.0'
 gem 'jbuilder',                '2.2.3'
 gem 'sdoc',                    '0.4.0', group: :doc
 gem 'sprockets',               '3.6.3'
+gem 'bcrypt-ruby',             '3.1.2'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'
