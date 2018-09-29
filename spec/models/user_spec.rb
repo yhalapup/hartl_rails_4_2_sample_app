@@ -7,4 +7,11 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to respond_to(:name) }
   it { is_expected.to respond_to(:email) }
+
+  it { is_expected.to be_valid }
+
+  describe "when name is not present" do
+    before { @user.name = " " }
+    it { is_expected.not_to be_valid }
+  end
 end
