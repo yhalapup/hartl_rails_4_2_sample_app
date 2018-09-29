@@ -19,4 +19,9 @@ RSpec.describe User, type: :model do
     before { @user.email = " " }
     it { is_expected.not_to be_valid }
   end
+
+  describe "when name is too long" do
+    before { @user.name = "a" * 51 }
+    it { is_expected.not_to be_valid }
+  end
 end
