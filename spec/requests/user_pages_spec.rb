@@ -7,10 +7,12 @@ RSpec.describe "UserPages", type: :request do
   describe "signup page" do
     before { visit signup_path }
 
+    let(:submit) { "Create my account" }
+
     describe "with invalid information" do
       it "should not create a user" do
         expect do
-          click_button "Create my account"
+          click_button submit
         end.not_to change(User, :count)
       end
     end
@@ -25,7 +27,7 @@ RSpec.describe "UserPages", type: :request do
 
       it "should create a user" do
         expect do
-          click_button "Create my account"
+          click_button submit
         end.to change(User, :count).by(1)
       end
     end
