@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
 
   def create
+    @user = User.new(params[:user])
+    if @user.save
+      # handle a successful save.
+    else
+      render 'new'
+    end
   end
 
   def new
