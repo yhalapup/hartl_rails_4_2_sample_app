@@ -7,6 +7,29 @@ RSpec.describe "UserPages", type: :request do
   describe "signup page" do
     before { visit signup_path }
 
+    describe "with invalid information" do
+      it "should not create a user" do
+        expect do
+          click_button "Create my account"
+        end.not_to change(User, :count)
+      end
+    end
+
+    describe "with valid information" do
+      before do
+        fill_in "Name",         with: "Example User"
+        fill_in "Email",        with: "user@example.com"
+        fill_in "Password",     with: "foobar"
+        fill_in "Confirmation", with: "foobar"
+      end
+
+      it "should create a user" do
+        expect do
+          click_button "Create my account"
+        end.to change(User, :count).by(1)
+      end
+    end
+
     it { is_expected.to have_content('Sign up') }
     it { is_expected.to have_title('Sign up') }
   end
