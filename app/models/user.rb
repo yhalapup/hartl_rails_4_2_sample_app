@@ -10,4 +10,11 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
 
   before_save { self.email = email.downcase }
+  before_create :create_remember_token
+
+  private
+
+  def create_remember_token
+    # Create the token.
+  end
 end
