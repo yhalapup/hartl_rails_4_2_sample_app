@@ -15,6 +15,11 @@ RSpec.describe "Authentication", type: :request do
 
       it { is_expected.to have_title('Sign in') }
       it { is_expected.to have_selector('div.alert.alert-error') }
+
+      describe "after visiting another page" do
+        before { click_link "Home" }
+        it { is_expected.not_to have_selector('div.alert.alert-error') }
+      end
     end
 
     describe "with valid information" do
