@@ -33,7 +33,7 @@ RSpec.describe "Authentication", type: :request do
       it { is_expected.to have_title(user.name) }
       it { is_expected.to have_link('Profile', href: user_path(user)) }
       it { is_expected.to have_link('Sign out', href: signout_path) }
-      it { is_expected.to have_link('Sign in', href: signin_path) }
+      it { is_expected.not_to have_link('Sign in', href: signin_path) }
     end
   end
 end
