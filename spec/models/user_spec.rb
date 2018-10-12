@@ -13,6 +13,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to respond_to(:password_digest) }
   it { is_expected.to respond_to(:password) }
   it { is_expected.to respond_to(:password_confirmation) }
+  it { is_expected.to respond_to(:remember_token) }
   it { is_expected.to respond_to(:authenticate) }
 
   it { is_expected.to be_valid }
@@ -102,5 +103,13 @@ RSpec.describe User, type: :model do
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { is_expected.not_to be_valid }
+  end
+
+  describe "remember token" do
+    before { @user.save }
+
+    it 'should not be blank' do
+      expect(subject.remember_token).not_to be_blank
+    end
   end
 end
