@@ -104,4 +104,12 @@ RSpec.describe User, type: :model do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { is_expected.not_to be_valid }
   end
+
+  describe "remember token" do
+    before { @user.save }
+
+    it 'should not be blank' do
+      expect(subject.remember_token).not_to be_blank
+    end
+  end
 end
