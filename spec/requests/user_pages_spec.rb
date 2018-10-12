@@ -56,4 +56,21 @@ RSpec.describe "UserPages", type: :request do
     it { is_expected.to have_content(user.name) }
     it { is_expected.to have_title(user.name) }
   end
+
+  describe "edit" do
+    let(:user) { FactoryBot.create(:user) }
+    before { visit edit_user_path(user) }
+
+    describe "page" do
+      it { is_expected.to have_content("Update your profile") }
+      it { is_expected.to have_title("Edit user") }
+      it { is_expected.to have_link('change', href: 'http://gravatar.com/emails') }
+    end
+
+    describe "with invalid information" do
+      before { click_button "Save changes" }
+
+      it { is_expected.to have_content('error') }
+    end
+  end
 end
